@@ -4,7 +4,7 @@ import numpy as np
 def sommamatrici(a, b):
     c = np.zeros(a.shape)
     for i in range(c.shape[0]):
-        for j in range(c.shape[0]):
+        for j in range(c.shape[1]):
             c[i][j] = a[i][j]+b[i][j]
     return c
 

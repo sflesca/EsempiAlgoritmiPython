@@ -58,4 +58,4 @@ class Heap:
         print("Numero elementi:"+ str(self.actualdim))
         print("Dimensione max:" + str(self.dim))
         print("Elenco Valori")
-        print(self.values[:self.actualdim])
+        print(str(self.values[:self.actualdim]))

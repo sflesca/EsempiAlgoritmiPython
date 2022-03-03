@@ -47,7 +47,21 @@ def somma(vett):
 
 
 def sommainefficiente(vett):
-    x = [0 for i in range(len(vett)+1)]
+    x = [0 for i in range(len(vett) + 1)]
     for i in range(len(vett)):
-        x[i+1] = vett[i] + x[i]
+        x[i + 1] = vett[i] + x[i]
     return x[len(vett)]
+
+
+def ordinamentoABolle(vett):
+    for i in range(len(vett) - 1):
+        scambiati = False
+        for j in range(i + 1, len(vett) - 1):
+            if vett[j-1] > vett[j]:
+                tmp = vett[j-1]
+                vett[j-1] = vett[j]
+                vett[j] = tmp
+                scambiati = True
+        if not scambiati:
+            return 0
+    return 1

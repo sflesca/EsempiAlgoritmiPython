@@ -17,8 +17,8 @@ from semplici.simple import moltiplicazionematrici, sommamatrici, fatt, fatit, s
 # print(trovato)
 
 
-v1 = np.random.randint(0, 10000000, 10000)
-x = -1
+v1 = np.random.randint(0, 10000000, 10000000)
+x = 15
 ts = time.time()
 trovato = search(v1, x)
 te = time.time() - ts
@@ -36,6 +36,6 @@ print("Tempo ricerca = " + str(te)+" secondi")
 # print(str(s)+"è la somma")
 # print("Tempo ricerca = " + str(te)+" secondi")
 
-v1 = [1, 2,3, 6, 28, 2]
+# v1 = [1, 2,3, 6, 28, 2]
 # print(somma(v1))
-print(sommainefficiente(v1))
+# print(sommainefficiente(v1))

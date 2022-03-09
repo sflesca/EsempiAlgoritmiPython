@@ -56,7 +56,7 @@ def sommainefficiente(vett):
 def ordinamentoABolle(vett):
     for i in range(len(vett) - 1):
         scambiati = False
-        for j in range(i + 1, len(vett) - 1):
+        for j in range(1, len(vett) - i):
             if vett[j-1] > vett[j]:
                 tmp = vett[j-1]
                 vett[j-1] = vett[j]
@@ -65,3 +65,24 @@ def ordinamentoABolle(vett):
         if not scambiati:
             return 0
     return 1
+
+def merge(A,B):
+    n = len(A)
+    m = len(B)
+    C = []
+    i = 0
+    j = 0
+    while i < n and j < m:
+        if A[i] <= B[j]:
+            C.append(A[i])
+            i = i+1
+        else:
+            C.append(B[j])
+            j = j+1
+    while i < n:
+        C.append(A[i])
+        i = i + 1
+    while j < m:
+        C.append(B[j])
+        j = j + 1
+    return C

@@ -31,6 +31,12 @@ def fatit(n):
         ft *= i
     return ft
 
+def fib(n):
+    if n<=2:
+        return 1
+    else:
+        return fib(n-1)+fib(n-2)
+
 
 def search(vett, x):
     for v in vett:
@@ -86,3 +92,5 @@ def merge(A,B):
         C.append(B[j])
         j = j + 1
     return C
+
+

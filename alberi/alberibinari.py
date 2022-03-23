@@ -5,9 +5,46 @@ from alberi.eccezioni import ValoriScorretti
 
 class AlberoBin:
     def __init__(self, val):
-        self.val=val
+        self.val = val
         self.sin = None
         self.des = None
+        self.parent = None
+
+    def setfigliosin(self, sin):
+        # complessità: indichiamo com n il numero di nodi già memorizzati nell'albero
+        # theta(1)
+        if not isinstance(sin, AlberoBin):
+            raise ValoriScorretti("tipo figlio non consentito")
+        if sin is None:
+            return
+        if sin.parent is not None:
+            raise ValoriScorretti("Il figlio passato ha già un padre")
+        if self.sin is not None:
+            self.sin.pota()  # staccare il figlio esistente
+        sin.parent = self
+        self.sin = sin
+
+    def setfigliodes(self, des):
+        # complessità: indichiamo com n il numero di nodi già memorizzati nell'albero
+        # theta(1)
+        if not isinstance(des, AlberoBin):
+            raise ValoriScorretti("tipo figlio non consentito")
+        if self.des is not None:
+            self.des.pota()
+        if des.parent is not None:
+            raise ValoriScorretti("Il figlio passato ha già un padre")
+        des.parent = self
+        self.des = des
+
+    def pota(self):
+        # complessità: indichiamo com n il numero di nodi già memorizzati nell'albero
+        # theta(1)
+        if self.parent is None:
+            return
+        if self.parent.sin == self:
+            self.parent.sin = None
+        if self.parent.des == self:
+            self.parent.des = None
         self.parent = None
 
     def __iter__(self):
@@ -52,34 +89,7 @@ class AlberoBin:
                             self.cur = self.cur.parent
                             direzione = "su"
 
-    def setfigliosin(self, sin):
-        if not isinstance(sin, AlberoBin):
-            raise ValoriScorretti("tipo figlio non consentito")
-        if self.sin is not None:
-            self.sin.pota()  # staccare il figlio esistente
-        if sin.parent is not None:
-            raise ValoriScorretti("Il figlio passato ha già un padre")
-        sin.parent = self
-        self.sin = sin
 
-    def setfigliodes(self, des):
-        if not isinstance(des, AlberoBin):
-            raise ValoriScorretti("tipo figlio non consentito")
-        if self.des is not None:
-            self.des.pota()
-        if des.parent is not None:
-            raise ValoriScorretti("Il figlio passato ha già un padre")
-        des.parent = self
-        self.des = des
-
-        def pota(self):
-            if self.parent is None:
-                return
-            if self.parent.sin == self:
-                self.parent.sin = None
-            if self.parent.des == self:
-                self.parent.des = None
-            self.parent = None
 
     def visitainfissa(self, l):
         if self.sin is not None:
@@ -114,4 +124,7 @@ class AlberoBin:
                 coda.append(curr.des)
         return l
 
-
+def tonestedlist(a):
+    if a is None:
+        return None
+    return [a.val,tonestedlist(a.sin),tonestedlist(a.des)]

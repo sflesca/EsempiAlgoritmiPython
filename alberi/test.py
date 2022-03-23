@@ -1,4 +1,4 @@
-from alberi.alberibinari import AlberoBin
+from alberi.alberibinari import AlberoBin, tonestedlist
 
 a = AlberoBin(0)
 b = AlberoBin(1)
@@ -13,6 +13,8 @@ b.setfigliodes(e)
 c.setfigliosin(f)
 # for x in a:
 #     print(x)
+
+print(tonestedlist(a))
 
 l = []
 a.visitainfissa(l)
@@ -29,3 +31,19 @@ print(l)
 l = []
 a.visitalivelli(l)
 print(l)
+
+def vI1(a):
+    l = []
+    vI(a,l)
+    return l
+
+def vI(a, l):
+    if a is  None:
+        return
+    vI(a.sin, l)
+    l.append(a.val)
+    vI(a.des,l)
+
+
+print("new")
+print(vI1(a))

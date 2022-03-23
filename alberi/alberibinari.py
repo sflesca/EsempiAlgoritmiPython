@@ -56,7 +56,7 @@ class AlberoBin:
         if not isinstance(sin, AlberoBin):
             raise ValoriScorretti("tipo figlio non consentito")
         if self.sin is not None:
-            self.sin.posta()  # staccare il figlio esistente
+            self.sin.pota()  # staccare il figlio esistente
         if sin.parent is not None:
             raise ValoriScorretti("Il figlio passato ha già un padre")
         sin.parent = self
@@ -91,15 +91,15 @@ class AlberoBin:
     def visitaanticipata(self, l):
         l.append(self.val)
         if self.sin is not None:
-            self.sin.visitainfissa(l)
+            self.sin.visitaanticipata(l)
         if self.des is not None:
-            self.des.visitainfissa(l)
+            self.des.visitaanticipata(l)
 
     def visitaposticipata(self, l):
         if self.sin is not None:
-            self.sin.visitainfissa(l)
+            self.sin.visitaposticipata(l)
         if self.des is not None:
-            self.des.visitainfissa(l)
+            self.des.visitaposticipata(l)
         l.append(self.val)
 
 

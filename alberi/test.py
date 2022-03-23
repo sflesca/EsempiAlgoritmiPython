@@ -8,11 +8,11 @@ e = AlberoBin(4)
 f = AlberoBin(5)
 a.setfigliosin(b)
 a.setfigliodes(c)
-c.setfigliosin(d)
-b.setfigliosin(e)
-b.setfigliodes(f)
-for x in a:
-    print(x)
+b.setfigliosin(d)
+b.setfigliodes(e)
+c.setfigliosin(f)
+# for x in a:
+#     print(x)
 
 l = []
 a.visitainfissa(l)

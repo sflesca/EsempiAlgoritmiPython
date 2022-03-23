@@ -2,7 +2,7 @@ import numpy as np
 import time
 
 from semplici.simple import moltiplicazionematrici, sommamatrici, fatt, fatit, search, somma, sommainefficiente, \
-    ordinamentoABolle, merge, fib
+    ordinamentoABolle, merge, fib, quasifib
 
 # m1 = np.array([[0, 1], [2, 3]])
 # m2 = np.array([[0, 2, 3], [1, 4, 5]])
@@ -41,14 +41,16 @@ from semplici.simple import moltiplicazionematrici, sommamatrici, fatt, fatit, s
 # print(somma(v1))
 # print(sommainefficiente(v1))
 
-v = [0,3,12,24,1,2]
-v1 = [12,5, 17, 34,1]
-ordinamentoABolle(v)
-ordinamentoABolle(v1)
-print(v)
-print(v1)
-v2 = merge(v,v1)
-print(v2)
+# v = [0,3,12,24,1,2]
+# v1 = [12,5, 17, 34,1]
+# ordinamentoABolle(v)
+# ordinamentoABolle(v1)
+# print(v)
+# print(v1)
+# v2 = merge(v,v1)
+# print(v2)
 
-for i in range(1,21):
-    print("fib "+str(i)+"="+str(fib(i)))
+# for i in range(1,21):
+#     print("fib "+str(i)+"="+str(fib(i)))
+
+quasifib(6)

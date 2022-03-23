@@ -31,11 +31,24 @@ def fatit(n):
         ft *= i
     return ft
 
+
 def fib(n):
-    if n<=2:
+    if n <= 2:
         return 1
     else:
-        return fib(n-1)+fib(n-2)
+        return
+
+
+def fibc(n):
+    if n <= 1:
+        return 1, 1
+    else:
+        x, y = fibc(n - 1)
+        return x + y, x
+
+def fib1(n):
+    x, y =  fibc(n)
+    return x
 
 
 def search(vett, x):
@@ -63,16 +76,17 @@ def ordinamentoABolle(vett):
     for i in range(len(vett) - 1):
         scambiati = False
         for j in range(1, len(vett) - i):
-            if vett[j-1] > vett[j]:
-                tmp = vett[j-1]
-                vett[j-1] = vett[j]
+            if vett[j - 1] > vett[j]:
+                tmp = vett[j - 1]
+                vett[j - 1] = vett[j]
                 vett[j] = tmp
                 scambiati = True
         if not scambiati:
             return 0
     return 1
 
-def merge(A,B):
+
+def merge(A, B):
     n = len(A)
     m = len(B)
     C = []
@@ -81,10 +95,10 @@ def merge(A,B):
     while i < n and j < m:
         if A[i] <= B[j]:
             C.append(A[i])
-            i = i+1
+            i = i + 1
         else:
             C.append(B[j])
-            j = j+1
+            j = j + 1
     while i < n:
         C.append(A[i])
         i = i + 1
@@ -94,3 +108,8 @@ def merge(A,B):
     return C
 
 
+def quasifib(n):
+    if n <= 2:
+        return 1
+    else:
+        return quasifib(n - 1) + quasifib(n - 1)

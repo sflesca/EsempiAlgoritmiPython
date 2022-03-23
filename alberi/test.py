@@ -25,3 +25,7 @@ print(l)
 l = []
 a.visitaposticipata(l)
 print(l)
+
+l = []
+a.visitalivelli(l)
+print(l)

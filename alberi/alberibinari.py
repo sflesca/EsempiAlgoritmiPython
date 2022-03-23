@@ -101,3 +101,17 @@ class AlberoBin:
         if self.des is not None:
             self.des.visitainfissa(l)
         l.append(self.val)
+
+
+    def visitalivelli(self, l):
+        coda = [self]
+        while len(coda)!=0:
+            curr = coda.pop(0)
+            l.append(curr.val)
+            if curr.sin is not None:
+                coda.append(curr.sin)
+            if curr.des is not None:
+                coda.append(curr.des)
+        return l
+
+

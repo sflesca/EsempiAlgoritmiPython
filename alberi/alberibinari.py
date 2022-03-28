@@ -128,3 +128,15 @@ def tonestedlist(a):
     if a is None:
         return None
     return [a.val,tonestedlist(a.sin),tonestedlist(a.des)]
+
+def fromnestedlist(l):
+    if l is None:
+        return None
+    x = AlberoBin(l[0])
+    s = fromnestedlist(l[1])
+    if s is not None:
+        x.setfigliosin(s)
+    d = fromnestedlist(l[2])
+    if d is not None:
+        x.setfigliodes(d)
+    return x

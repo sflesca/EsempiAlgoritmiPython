@@ -6,9 +6,9 @@ from alberi.eccezioni import ValoriScorretti
 class AlberoBin:
     def __init__(self, val):
         self.val = val
-        self.sin = None
-        self.des = None
-        self.parent = None
+        self.sin: AlberoBin = None
+        self.des: AlberoBin = None
+        self.parent: AlberoBin = None
 
     def setfigliosin(self, sin):
         # complessità: indichiamo com n il numero di nodi già memorizzati nell'albero
@@ -89,8 +89,6 @@ class AlberoBin:
                             self.cur = self.cur.parent
                             direzione = "su"
 
-
-
     def visitainfissa(self, l):
         if self.sin is not None:
             self.sin.visitainfissa(l)
@@ -112,10 +110,9 @@ class AlberoBin:
             self.des.visitaposticipata(l)
         l.append(self.val)
 
-
     def visitalivelli(self, l):
         coda = [self]
-        while len(coda)!=0:
+        while len(coda) != 0:
             curr = coda.pop(0)
             l.append(curr.val)
             if curr.sin is not None:
@@ -124,10 +121,12 @@ class AlberoBin:
                 coda.append(curr.des)
         return l
 
+
 def tonestedlist(a):
     if a is None:
         return None
-    return [a.val,tonestedlist(a.sin),tonestedlist(a.des)]
+    return [a.val, tonestedlist(a.sin), tonestedlist(a.des)]
+
 
 def fromnestedlist(l):
     if l is None:

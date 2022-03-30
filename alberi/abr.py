@@ -28,3 +28,19 @@ class ABR:
                 return self.__search__(curr.des, val)
             else:
                 return curr
+
+    def min(self):
+        if self.valori is None:
+            return None
+        curr = self.valori
+        while curr.sin is not None:
+            curr = curr.sin
+        return curr.val
+
+    def max(self):
+        if self.valori is None:
+            return None
+        curr = self.valori
+        while curr.des is not None:
+            curr = curr.des
+        return curr.val

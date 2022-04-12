@@ -6,7 +6,7 @@ class ABR:
         self.valori: AlberoBin = None
 
     def search(self, val):
-        x = self.__search__(valori, val)
+        x = self.__search__(self.valori, val)
         if x is None:
             return False
         if x.val == val:

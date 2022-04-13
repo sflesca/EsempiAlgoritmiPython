@@ -1,6 +1,7 @@
 from grafi import GrafoMA
+from grafi import GrafoLA
 
-g = GrafoMA(4)
+g = GrafoLA(4)
 g.aggiungiarco(0, 1)
 g.aggiungiarco(0, 2)
 g.aggiungiarco(1, 2)

@@ -56,16 +56,60 @@ def econnesso(g: GrafoNO)->bool:
 def ealbero(g: GrafoNO)->bool:
     return g.n==g.m+1 and econnesso(g)
 
-g: GrafoNO = GrafoLANO(5)
+def numcompconnesse(g: GrafoNO)->int:
+    visitati: list[bool] = [False for i in range(g.n)]
+    comp:int = 0
+    for i in range(g.n):
+        if not visitati[i]:
+            comp+=1
+            __visitaprofonditaRic__(g,i,visitati,[])
+    return comp
+
+def eaciclico(g: GrafoNO)->bool:
+    return g.n==g.m+numcompconnesse(g)
+
+
+def trovazero(gradi:list[int],rimossi)->int:
+    for i in range(len(gradi)):
+        if gradi[i]==0 and not rimossi[i]:
+            return i
+    return -1
+
+
+def tuttizero(gradi:list[int])->bool:
+    for x in gradi:
+        if x!=0:
+            return False
+    return True
+
+
+def eaciclicoOR(g: Grafo)->bool:
+    gradi: list[int] = [0 for i in range(g.n)]
+    rimossi: list[bool] = [False for i in range(g.n)]
+    for x,y in g.archi():
+        gradi[y] +=1
+    curr = trovazero(gradi,rimossi)
+    while curr!=-1:
+        rimossi[curr] = True
+        for ad in g.adiacenti(curr):
+            gradi[ad] -=1
+        curr = trovazero(gradi,rimossi)
+    return tuttizero(gradi)
+
+g: Grafo = GrafoLA(7)
 g.aggiungiarco(0, 1)
 g.aggiungiarco(0, 2)
 g.aggiungiarco(1, 3)
 #g.aggiungiarco(2, 3)
 g.aggiungiarco(3, 4)
+g.aggiungiarco(5, 6)
 g.stampa()
 
 print(visitaprofonditaRic(g,0))
 print(visitaprofondita(g,0))
 print(visitaampiezza(g,0))
-print("E' connesso:"+str(econnesso(g)))
-print("E' albero:"+str(ealbero(g)))
+# print("E' connesso:"+str(econnesso(g)))
+# print("E' albero:"+str(ealbero(g)))
+# print("Num componenti connesse:"+str(numcompconnesse(g)))
+# print("E' aciclico:"+str(eaciclico(g)))
+print("E' aciclico:"+str(eaciclicoOR(g)))

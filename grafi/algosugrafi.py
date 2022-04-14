@@ -1,4 +1,5 @@
 from grafi import Grafo, GrafoLA, GrafoMA
+from grafino import GrafoNO, GrafoLANO, GrafoMANO
 
 
 def __visitaprofonditaRic__(g: Grafo, nodo: int, visitati: list[bool], risultato: list[int]):
@@ -45,14 +46,26 @@ def visitaampiezza(g: Grafo, nodo: int) -> list[int]:
                 pila.append(ad)
     return risultato
 
-g: Grafo = GrafoMA(10)
+
+def econnesso(g: GrafoNO)->bool:
+    result = visitaampiezza(g,0)
+    if len(result) == g.n:
+        return True
+    return False
+
+def ealbero(g: GrafoNO)->bool:
+    return g.n==g.m+1 and econnesso(g)
+
+g: GrafoNO = GrafoLANO(5)
 g.aggiungiarco(0, 1)
 g.aggiungiarco(0, 2)
 g.aggiungiarco(1, 3)
-g.aggiungiarco(2, 3)
+#g.aggiungiarco(2, 3)
 g.aggiungiarco(3, 4)
 g.stampa()
 
 print(visitaprofonditaRic(g,0))
 print(visitaprofondita(g,0))
 print(visitaampiezza(g,0))
+print("E' connesso:"+str(econnesso(g)))
+print("E' albero:"+str(ealbero(g)))

@@ -1,8 +1,9 @@
 from grafi import GrafoMA
 from grafi import GrafoLA
+from grafino import GrafoLANO, GrafoMANO
 from unionfind import UnionFind
 
-g = GrafoLA(4)
+g = GrafoMANO(4)
 g.aggiungiarco(0, 1)
 g.aggiungiarco(0, 2)
 g.aggiungiarco(1, 2)

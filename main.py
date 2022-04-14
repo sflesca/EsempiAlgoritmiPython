@@ -1,16 +1,30 @@
-# This is a sample Python script.
+# Python program to
+# demonstrate stack implementation
+# using list
 
-# Press Maiusc+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+stack = []
 
+# append() function to push
+# element in the stack
+stack.append('a')
+stack.append('b')
+stack.append('c')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+print('Initial stack')
+print(stack)
 
+# pop() function to pop
+# element from stack in
+# LIFO order
+print('\nElements popped from stack:')
+print(stack.pop())
+print(stack.pop())
+print(stack.pop())
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+print('\nStack after elements are popped:')
+print(stack)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# uncommenting print(stack.pop())
+# will cause an IndexError
+# as the stack is now empty
+

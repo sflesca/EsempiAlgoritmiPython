@@ -1,11 +1,34 @@
 import numpy as np
 
-
-class GrafoMA:
-    def __init__(self, n):  # crea un grafo con numero di nodi nodes
-        self.mat = np.zeros((n, n), np.bool_)
+class Grafo:
+    def __init__(self,n:int):
         self.n = n
         self.m = 0
+
+    def aggiungiarco(self, x, y):
+        pass
+
+    def rimuoviarco(self, x, y):
+        pass
+
+    def arco(self, x, y):
+        pass
+
+    def adiacenti(self, x):
+        pass
+
+    def archi(self):
+        pass
+
+    def stampa(self):
+        pass
+
+
+class GrafoMA(Grafo):
+    def __init__(self, n):  # crea un grafo con numero di nodi nodes
+        super().__init__(n)
+        self.mat = np.zeros((n, n), np.bool_)
+
 
     def aggiungiarco(self, x, y):
         if not self.mat[x][y]:
@@ -51,7 +74,7 @@ class IterArcoMAAdiacenti:
     def __next__(self):
         if not self.hasnext:
             raise StopIteration
-        tmp = (self.x, self.y)
+        tmp = self.y
         self.y += 1
         while self.y < self.g.mat.shape[1] and not self.g.mat[self.x][self.y]:
             self.y += 1
@@ -62,7 +85,7 @@ class IterArcoMAAdiacenti:
         return tmp
 
 
-class IterArcoMA:
+class IterArcoMA(Grafo):
     def __init__(self, g):
         self.g = g
 
@@ -83,14 +106,13 @@ class IterArcoMA:
                     self.it = iter(self.g.adiacenti(self.x))
                 else:
                     raise StopIteration
-        return y
+        return self.x, y
 
 
-class GrafoLA:
+class GrafoLA(Grafo):
     def __init__(self, n):  # crea un grafo con numero di nodi nodes
+        super().__init__(n)
         self.mat = [[] for i in range(n)]
-        self.n = n
-        self.m = 0
 
     def aggiungiarco(self, x, y):
         if y not in self.mat[x]:
@@ -135,4 +157,4 @@ class IterArcoLA:
                     self.it = iter(self.g.adiacenti(self.x))
                 else:
                     raise StopIteration
-        return (self.x,y)
+        return self.x, y

@@ -1,5 +1,6 @@
 from grafi import GrafoMA
 from grafi import GrafoLA
+from unionfind import UnionFind
 
 g = GrafoLA(4)
 g.aggiungiarco(0, 1)
@@ -18,3 +19,11 @@ print("tutti")
 it = g.archi()
 for a in it:
     print(a)
+
+
+UF = UnionFind(5)
+print(UF)
+UF.union(UF.find(0), UF.find(1))
+print(UF)
+UF.unionSenzaBilanciamento(UF.find(2), UF.find(1))
+print(UF)

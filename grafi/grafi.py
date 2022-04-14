@@ -116,7 +116,7 @@ class GrafoLA:
 
 class IterArcoLA:
     def __init__(self, g):
-        self.g = g
+        self.g:GrafoLA = g
 
     def __iter__(self):
         self.x = 0

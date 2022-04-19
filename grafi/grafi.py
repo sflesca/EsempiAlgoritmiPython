@@ -120,8 +120,11 @@ class GrafoLA(Grafo):
             self.m += 1
 
     def rimuoviarco(self, x, y):
-        self.mat[x].remove(y)
-        self.m -= 1
+        try:
+            self.mat[x].remove(y)
+            self.m -= 1
+        except ValueError:
+            pass
 
     def arco(self, x, y):
         return y in self.mat[x]

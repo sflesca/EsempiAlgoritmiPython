@@ -114,5 +114,6 @@ g.stampa()
 print("\n")
 print(g.arco(0,1))
 
-for c in g.adiacenti(0):
+print("\n")
+for c in g.archi():
     print(c)

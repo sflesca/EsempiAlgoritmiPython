@@ -16,8 +16,7 @@ def visitaprofonditaRic(g: Grafo, nodo: int) -> list[int]:
     return risultato
 
 
-
-def visitaprofondita(g: Grafo, nodo: int) -> list[int]:
+def visitaprofondita(g: Grafo, nodo: int) -> list[int]:  # MA theta(n^2) LA theta(m) spaziale theta(n)
     risultato: list[int] = []
     pila: list[int] = []
     visitati: list[bool] = [False for i in range(g.n)]
@@ -25,91 +24,80 @@ def visitaprofondita(g: Grafo, nodo: int) -> list[int]:
     while pila:
         curr: int = pila.pop()
         if not visitati[curr]:
-            visitati[curr] =  True
+            visitati[curr] = True
             risultato.append(curr)
             for ad in reversed(list(g.adiacenti(curr))):
                 pila.append(ad)
     return risultato
 
 
-def visitaampiezza(g: Grafo, nodo: int) -> list[int]:
+def visitaampiezza(g: Grafo, nodo: int) -> list[int]:  # MA theta(n^2) LA theta(m) spaziale theta(n)
     risultato: list[int] = []
-    pila: list[int] = []
+    coda: list[int] = []
     visitati: list[bool] = [False for i in range(g.n)]
-    pila.append(nodo)
-    while pila:
-        curr: int = pila.pop(0)
+    coda.append(nodo)
+    while coda:
+        curr: int = coda.pop(0)  # theta(n)
         if not visitati[curr]:
-            visitati[curr] = True
-            risultato.append(curr)
-            for ad in g.adiacenti(curr):
-                pila.append(ad)
+            visitati[curr] = True  # theta(n)
+            risultato.append(curr)  # theta(n)
+            for ad in g.adiacenti(curr):  # LA theta(m)    MA theta(n^2)
+                if not visitati[ad]:  # theta(m)
+                    coda.append(ad)  # theta(m)
     return risultato
 
 
-def econnesso(g: GrafoNO)->bool:
-    result = visitaampiezza(g,0)
+def econnesso(g: GrafoNO) -> bool:
+    result = visitaampiezza(g, 0)
     if len(result) == g.n:
         return True
     return False
 
-def ealbero(g: GrafoNO)->bool:
-    return g.n==g.m+1 and econnesso(g)
 
-def numcompconnesse(g: GrafoNO)->int:
+def ealbero(g: GrafoNO) -> bool:  # MA theta(n^2) LA theta(n)
+    return g.n == g.m + 1 and econnesso(g)
+
+
+def numcompconnesse(g: GrafoNO) -> int:
     visitati: list[bool] = [False for i in range(g.n)]
-    comp:int = 0
+    comp: int = 0
     for i in range(g.n):
         if not visitati[i]:
-            comp+=1
-            __visitaprofonditaRic__(g,i,visitati,[])
+            comp += 1
+            __visitaprofonditaRic__(g, i, visitati, [])
     return comp
 
-def eaciclico(g: GrafoNO)->bool:
-    return g.n==g.m+numcompconnesse(g)
+
+def eaciclico(g: GrafoNO) -> bool:
+    return g.n == g.m + numcompconnesse(g)
 
 
-def trovazero(gradi:list[int],rimossi)->int:
+def trovazero(gradi: list[int], rimossi) -> int:
     for i in range(len(gradi)):
-        if gradi[i]==0 and not rimossi[i]:
+        if gradi[i] == 0 and not rimossi[i]:
             return i
     return -1
 
 
-def tuttizero(gradi:list[int])->bool:
+def tuttizero(gradi: list[int]) -> bool:
     for x in gradi:
-        if x!=0:
+        if x != 0:
             return False
     return True
 
 
-def eaciclicoOR(g: Grafo)->bool:
-    gradi: list[int] = [0 for i in range(g.n)]
-    rimossi: list[bool] = [False for i in range(g.n)]
-    for x,y in g.archi():
-        gradi[y] +=1
-    curr = trovazero(gradi,rimossi)
-    while curr!=-1:
+def eaciclicoOR(g: Grafo) -> bool:                          #theta(n^2)
+    gradi: list[int] = [0 for i in range(g.n)]              #theta(n)
+    rimossi: list[bool] = [False for i in range(g.n)]       #theta(n)
+    for x, y in g.archi():                                  #MA theta(n^2) LA theta(m)
+        gradi[y] += 1
+    curr = trovazero(gradi, rimossi)                        #theta(n)
+    while curr != -1:                                       #per ogni nodo che rimuovo (nel caso peggiore per ogni nodo) theta(n^2)
         rimossi[curr] = True
-        for ad in g.adiacenti(curr):
-            gradi[ad] -=1
-        curr = trovazero(gradi,rimossi)
-    return tuttizero(gradi)
+        for ad in g.adiacenti(curr):                        #MA theta(n) LA theta(grado_i(curr))
+            gradi[ad] -= 1
+        curr = trovazero(gradi, rimossi)                    #theta(n)
+    return tuttizero(gradi)                                 #theta(n)
 
-g: Grafo = GrafoLA(7)
-g.aggiungiarco(0, 1)
-g.aggiungiarco(0, 2)
-g.aggiungiarco(1, 3)
-#g.aggiungiarco(2, 3)
-g.aggiungiarco(3, 4)
-g.aggiungiarco(5, 6)
-g.stampa()
 
-print(visitaprofonditaRic(g,0))
-print(visitaprofondita(g,0))
-print(visitaampiezza(g,0))
-# print("E' connesso:"+str(econnesso(g)))
-# print("E' albero:"+str(ealbero(g)))
-# print("Num componenti connesse:"+str(numcompconnesse(g)))
-# print("E' aciclico:"+str(eaciclico(g)))
-print("E' aciclico:"+str(eaciclicoOR(g)))
+

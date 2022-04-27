@@ -1,4 +1,4 @@
-from eccezioni import HeapFullError
+from heap.eccezioni import HeapFullError
 
 
 class Heap:
@@ -7,10 +7,7 @@ class Heap:
         self.actualdim = 0
         self.values = [0 for x in range(dim)]
 
-    def __init__(self, vals: list):
-        self.dim = len(vals)
-        self.actualdim = 0
-        self.values = vals
+
 
     def ins(self, val):
         if self.actualdim < self.dim:

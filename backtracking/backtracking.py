@@ -10,7 +10,7 @@ class ProblemaBack:
         while liv >= 0:
             if self.verificaVincoli(liv):
                 if self.solCompleta(liv):
-                    costruisciSoluzione(liv)
+                    self.costruisciSoluzione(liv)
                     return True
                 liv += 1
                 if not self.primaScelta(liv):

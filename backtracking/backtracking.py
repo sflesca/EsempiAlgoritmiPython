@@ -2,7 +2,7 @@ class ProblemaBack:
     def __init__(self):
         pass
 
-    def risolvi(self):
+    def risolvi(self)->bool:
         liv: int = 0
         rivedi: bool = False
         if not self.primaScelta(liv):
@@ -14,26 +14,26 @@ class ProblemaBack:
                     return True
                 liv += 1
                 if not self.primaScelta(liv):
-                    rivedi = true
+                    rivedi = True
             else:
                 if not self.successivaScelta(liv):
-                    rivedi = true
+                    rivedi = True
             while rivedi and liv >= 0:
                 liv -= 1
                 if liv >= 0 and self.successivaScelta(liv):
-                    rivedi = false
+                    rivedi = False
         return False
 
-    def successivaScelta(self, liv: int):
+    def primaScelta(self, liv: int)->bool:
         pass
 
-    def solCompleta(self, liv: int):
+    def successivaScelta(self, liv: int)->bool:
         pass
 
-    def verificaVincoli(self, liv: int):
+    def solCompleta(self, liv: int)->bool:
         pass
 
-    def primaScelta(self, liv: int):
+    def verificaVincoli(self, liv: int)->bool:
         pass
 
     def costruisciSoluzione(self, liv: int):

@@ -53,4 +53,4 @@ from semplici.simple import moltiplicazionematrici, sommamatrici, fatt, fatit, s
 # for i in range(1,21):
 #     print("fib "+str(i)+"="+str(fib(i)))
 
-quasifib(6)
+print(quasifib(3))

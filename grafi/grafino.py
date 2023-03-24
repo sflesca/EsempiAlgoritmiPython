@@ -1,6 +1,6 @@
 import numpy as np
 
-class Grafo:
+class GrafoNO:
     def __init__(self,n:int):
         self.n = n
         self.m = 0
@@ -24,7 +24,7 @@ class Grafo:
         pass
 
 
-class GrafoMA(Grafo):
+class GrafoMANO(GrafoNO):
     def __init__(self, n):  # crea un grafo con numero di nodi nodes
         super().__init__(n)
         self.mat = np.zeros((n, n), np.bool_)
@@ -33,11 +33,13 @@ class GrafoMA(Grafo):
     def aggiungiarco(self, x, y):
         if not self.mat[x][y]:
             self.mat[x][y] = True
+            self.mat[y][x] = True
             self.m += 1
 
     def rimuoviarco(self, x, y):
         if self.mat[x][y]:
             self.mat[x][y] = False
+            self.mat[y][x] = False
             self.m -= 1
 
     def arco(self, x, y):
@@ -99,7 +101,8 @@ class IterArcoMA:
         while not trovato:
             try:
                 y = next(self.it)
-                trovato = True
+                if y >= self.x:
+                    trovato = True
             except StopIteration:
                 if self.x < self.g.n-1:
                     self.x += 1
@@ -109,7 +112,7 @@ class IterArcoMA:
         return self.x, y
 
 
-class GrafoLA(Grafo):
+class GrafoLANO(GrafoNO):
     def __init__(self, n):  # crea un grafo con numero di nodi nodes
         super().__init__(n)
         self.mat = [[] for i in range(n)]
@@ -117,14 +120,14 @@ class GrafoLA(Grafo):
     def aggiungiarco(self, x, y):
         if y not in self.mat[x]:
             self.mat[x].append(y)
+            self.mat[y].append(x)
             self.m += 1
 
     def rimuoviarco(self, x, y):
-        try:
+        if self.arco(x,y):
             self.mat[x].remove(y)
-            self.m -= 1
-        except ValueError:
-            pass
+            self.mat[y].remove(x)
+            self.m -=1
 
     def arco(self, x, y):
         return y in self.mat[x]
@@ -154,7 +157,8 @@ class IterArcoLA:
         while not trovato:
             try:
                 y = next(self.it)
-                trovato = True
+                if y >= self.x:
+                    trovato = True
             except StopIteration:
                 if self.x < self.g.n-1:
                     self.x += 1
@@ -162,3 +166,4 @@ class IterArcoLA:
                 else:
                     raise StopIteration
         return self.x, y
+

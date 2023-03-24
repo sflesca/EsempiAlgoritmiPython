@@ -1,4 +1,4 @@
-from heap import Heap
+from heap.heap import Heap
 
 
 class HeapModificabile(Heap):
@@ -48,7 +48,7 @@ class HeapModificabile(Heap):
                         curr = (curr+1) * 2
                 else:
                     break
-            if self.values[curr] > self.values[(curr + 1) * 2 - 1]:
+            elif self.values[curr] > self.values[(curr + 1) * 2 - 1]:
                 tmp = self.values[curr]
                 self.values[curr] = self.values[(curr + 1) * 2 - 1]
                 self.values[(curr + 1) * 2 - 1] = tmp
@@ -61,7 +61,7 @@ class HeapModificabile(Heap):
         return x
 
     def update(self, val):
-        if not val in self.positions:
+        if not val in self.positions:     #implementazione inefficiente sarebbe necessario un accesso diretto
             self.ins(val)
         else:
             curr = self.positions[val]
@@ -108,6 +108,9 @@ class HeapModificabile(Heap):
                         curr = (curr + 1) * 2 - 1
                     else:
                         break
+
+    def evuoto(self):
+        return self.actualdim==0
 
     def print(self):
         super().print()

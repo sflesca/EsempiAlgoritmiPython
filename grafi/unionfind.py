@@ -19,6 +19,7 @@ class UnionFind:
 
     def union(self, a: MySet, b: MySet):
         if a.size < b.size:
+            print('Eseguo '+ str(len(a.elementlist))+' spostamenti')
             for el in a.elementlist:
                 self.elements[el] = b.pos
                 b.elementlist.append(el)
@@ -27,6 +28,7 @@ class UnionFind:
             a.size = 0
             a.elementlist = []
         else:
+            print('Eseguo ' + str(len(b.elementlist)) + ' spostamenti')
             for el in b.elementlist:
                 self.elements[el] = a.pos
                 a.elementlist.append(el)

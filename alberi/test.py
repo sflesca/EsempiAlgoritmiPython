@@ -114,3 +114,6 @@ print(esimmetrico(alb))
 alb = fromnestedlist([0, [1, [3, None, None], [4, None, None]], [1, [4, None, None], [3, None, None]]])
 print(tonestedlist(alb))
 print(esimmetrico(alb))
+
+alb.ciccio = "ciao"
+print(alb.ciccio)

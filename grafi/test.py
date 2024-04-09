@@ -25,10 +25,13 @@ for a in it:
 
 
 UF = UnionFind(5)
+print('UF')
 print(UF)
 UF.union(UF.find(0), UF.find(1))
+print('DOPO UNION Set(0) e Set(1)')
 print(UF)
-UF.unionSenzaBilanciamento(UF.find(2), UF.find(1))
+UF.union(UF.find(2), UF.find(1))
+print('DOPO UNION Set(2) e Set(1)')
 print(UF)
 
 

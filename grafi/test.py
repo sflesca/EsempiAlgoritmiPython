@@ -5,7 +5,7 @@ from grafino import GrafoLANO, GrafoMANO
 from unionfind import UnionFind
 from scheduleratt import Scheduler, Attivita, Propedeuticita
 
-g = GrafoLA(4)
+g = GrafoMANO(4)
 g.aggiungiarco(0, 1)
 g.aggiungiarco(0, 2)
 g.aggiungiarco(1, 2)
@@ -25,10 +25,13 @@ for a in it:
 
 
 UF = UnionFind(5)
+print('UF')
 print(UF)
 UF.union(UF.find(0), UF.find(1))
+print('DOPO UNION Set(0) e Set(1)')
 print(UF)
 UF.union(UF.find(2), UF.find(1))
+print('DOPO UNION Set(2) e Set(1)')
 print(UF)
 
 

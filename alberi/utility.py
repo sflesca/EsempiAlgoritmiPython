@@ -1,6 +1,7 @@
 import sys
 from platform import android_ver
 
+from alberi.abr import ABR
 from alberi.alberibinari import AlberoBin
 
 
@@ -63,14 +64,6 @@ def diricerca(a: AlberoBin)->bool:
             and diricerca(a.sin) and diricerca(a.des))
 
 
-
-
-
-
-
-
-
-
 def diricercasbagliato(a: AlberoBin)->bool:
     if a is None:
         return True
@@ -81,3 +74,11 @@ def diricercasbagliato(a: AlberoBin)->bool:
         if a.des.val >= val:
             return False
     return diricercasbagliato(a.sin) and diricercasbagliato(a.des)
+
+def costruisciABRdavettoreordinato(abr:ABR, l:list, inizio: int, fine:int):
+    if fine<inizio:
+        return
+    med = (inizio+fine)//2
+    abr.insert(l[med])
+    costruisciABRdavettoreordinato(abr,l,inizio, med-1)
+    costruisciABRdavettoreordinato(abr, l, med+1, fine)

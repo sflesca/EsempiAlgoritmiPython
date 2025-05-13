@@ -44,6 +44,7 @@ g.aggiungiarco(0,4)
 g.aggiungiarco(2,1)
 g.aggiungiarco(1,5)
 g.aggiungiarco(3,4)
+g.stampa()
 
 c:Cricca = Cricca(g,3)
 if c.risolvi():

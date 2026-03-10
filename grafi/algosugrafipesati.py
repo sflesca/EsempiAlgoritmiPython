@@ -84,13 +84,13 @@ def prim(g: GrafoNOP):
         return []
 
 
-def Dijkstra(g: GrafoP):
+def Dijkstra(g: GrafoP, source: int):
     padri: list[int] = [-1 for i in range(g.n)]
     pesi: list[int] = [sys.maxsize for i in range(g.n)]
     preso: list[bool] = [False for i in range(g.n)]
-    curr: int = 0
-    padri[0] = 0
-    preso[0] = True
+    curr: int = source
+    padri[curr] = curr
+    preso[curr] = True
     count = 1
     result = []
     mioheap: HeapModificabile = HeapModificabile(g.n)

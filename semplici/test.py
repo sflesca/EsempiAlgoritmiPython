@@ -18,16 +18,16 @@ from semplici.simple import moltiplicazionematrici, sommamatrici, fatt, fatit, s
 # print(trovato)
 
 
-v1 = np.random.randint(0, 9, 100000000)
-x = 15
-ts = time.time()
-trovato = search(v1, x)
-te = time.time() - ts
-if trovato:
-    print(str(x)+" è presente")
-else:
-    print(str(x) + " non è presente")
-print("Tempo ricerca = " + str(te)+" secondi")
+# v1 = np.random.randint(0, 9, 100000000)
+# x = 15
+# ts = time.time()
+# trovato = search(v1, x)
+# te = time.time() - ts
+# if trovato:
+#     print(str(x)+" è presente")
+# else:
+#     print(str(x) + " non è presente")
+# print("Tempo ricerca = " + str(te)+" secondi")
 
 
 # v1 = np.random.randint(0, 4, 100000000)
@@ -51,6 +51,6 @@ print("Tempo ricerca = " + str(te)+" secondi")
 # print(v2)
 
 # for i in range(1,21):
-#     print("fib "+str(i)+"="+str(fib(i)))
+#     print("fib "+str(i)+"="+str(fib(i))
 
-print(quasifib(3))
+fib(5)

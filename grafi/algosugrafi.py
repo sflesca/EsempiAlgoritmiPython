@@ -2,7 +2,7 @@ from grafi import Grafo, GrafoLA, GrafoMA
 from grafino import GrafoNO, GrafoLANO, GrafoMANO
 
 
-def __visitaprofonditaRic__(g: Grafo, nodo: int, visitati: list[bool], risultato: list[int]):
+def __visitaprofonditaRic__(g: Grafo, nodo: int, visitati: list[bool], risultato: list[int]): # MA theta(n^2) LA theta(m) spaziale theta(n)
     if not visitati[nodo]:
         visitati[nodo] = True
         risultato.append(nodo)

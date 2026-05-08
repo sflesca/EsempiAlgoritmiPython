@@ -108,11 +108,11 @@ def Dijkstra(g: GrafoP, source: int):
                 if padri[a.y] == -1:
                     mioheap.ins(Pair(a.y, a.peso + pesi[cp.x]))
                     padri[a.y] = cp.x
-                    pesi[a.y] = a.peso
+                    pesi[a.y] = a.peso + pesi[cp.x]
                 elif pesi[a.y] > a.peso + pesi[cp.x]:
                     mioheap.update(Pair(a.y, a.peso + pesi[cp.x]))
                     padri[a.y] = cp.x
-                    pesi[a.y] = a.peso
+                    pesi[a.y] = a.peso + pesi[cp.x]
     return result
 
 

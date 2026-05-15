@@ -20,8 +20,29 @@ def lcs(X, Y):
             else:
                 L[i][j] = max(L[i - 1][j], L[i][j - 1])
 
-    # L[m][n] contains the length of LCS of X[0..n-1] & Y[0..m-1]
-    return L[m][n]
+    # --- Ricostruzione della sottosequenza ---
+    lcs_str = []
+    i, j = m, n
+
+    while i > 0 and j > 0:
+        if X[i - 1] == Y[j - 1]:
+            # Questo carattere fa parte della LCS
+            lcs_str.append(X[i - 1])
+            i -= 1
+            j -= 1
+        elif L[i - 1][j] > L[i][j - 1]:
+            # Veniamo dalla riga sopra
+            i -= 1
+        else:
+            # Veniamo dalla colonna a sinistra
+            j -= 1
+
+    # I caratteri sono stati aggiunti al contrario, quindi invertiamo
+    lcs_str.reverse()
+
+    return L[m][n], "".join(lcs_str)
+
+
 
 
 # end of function lcs
@@ -30,4 +51,6 @@ def lcs(X, Y):
 # Driver program to test the above function
 X = "AGGTAB"
 Y = "GXTXAYB"
+print("X=", X)
+print("Y=", Y)
 print("Length of LCS is ", lcs(X, Y))

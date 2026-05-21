@@ -4,7 +4,7 @@ from grafi.grafino import GrafoNO, GrafoMANO
 
 class Cricca(ProblemaBack):
     def __init__(self, g: GrafoNO, k: int):
-        self.g: Grafo = g
+        self.g: GrafoNO = g
         self.nodes: list[int] = [-1 for i in range(k)]
         self.sol: list[int] = []
 
@@ -27,7 +27,7 @@ class Cricca(ProblemaBack):
         return liv == len(self.nodes) - 1
 
     def verificaVincoli(self, liv: int) -> bool:
-        for i in range(liv - 1):
+        for i in range(liv):
             if not self.g.arco(self.nodes[i], self.nodes[liv]):
                 return False
         return True
